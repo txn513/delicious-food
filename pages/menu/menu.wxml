@@ -1,0 +1,7 @@
+<block style="">
+  <view class='wrap'>
+    <view style='text-align: center;'>
+      <image class='pizza' bindtouchend='touchend' bindtouchmove='touchmove' bindtouchstart='touchstart'      style='width:375rpx; height: 375rpx;transform:translate({{newPos}},0) scale({{itemScale}});' src="../images/pizza.png"></image>
+    </view>
+  </view>
+</block>

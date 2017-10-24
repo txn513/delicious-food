@@ -1,0 +1,7 @@
+.pizza {
+  position: relative;
+}
+.wrap {
+  height: 1000rpx;
+  background: #331134;
+}

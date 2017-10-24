@@ -1,0 +1,17 @@
+.pizza {
+  position: relative;
+}
+.wrap {
+  height: 1000rpx;
+  background: #331134;
+}
+.touchItemWrap {
+  position: relative;
+  /* transform: translate(187.5rpx,0) */
+}
+.touchItem {
+  position: absolute;
+}
+.touchItemImage {
+  vertical-align: bottom;
+}
