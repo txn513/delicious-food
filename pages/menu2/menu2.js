@@ -205,22 +205,6 @@ Page({
       }
     }
 
-    // if (this.data.moveDis < 0) {  //向左滑动
-    //   if (Math.abs(this.data.moveDis) < this.data.midWindowWidth / 2) {
-    //     c(1);
-    //   }
-    //   else {
-    //     c(2);
-    //   }
-    // }
-    // else {
-    //   if (Math.abs(this.data.moveDis) < this.data.midWindowWidth / 2) {
-    //     c(1);
-    //   }
-    //   else {
-    //     c(3);
-    //   }
-    // }
 
     this.setData({
       lastPos: this.data.newPos,
