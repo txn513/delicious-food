@@ -17,3 +17,11 @@ page{
 .touchItemImage {
   vertical-align: bottom;
 }
+
+.text {
+  border-radius: 8rpx;
+  background: #ccc;
+  height: 40rpx;
+  width: 200rpx;
+  margin: 0 auto;
+}

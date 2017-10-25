@@ -24,6 +24,9 @@
       </view>
 
     </view>
+
+
+    <view class='text'></view>
   </view>
 
   <!-- transform: scale({{1-(newPos-initialLeft-index*midWindowWidth)/midWindowWidth}}) -->
