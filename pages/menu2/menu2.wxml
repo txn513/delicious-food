@@ -26,9 +26,17 @@
     </view>
 
 
-    <view class='text'></view>
+    <view class='text-area'>
+      <view class='text'></view>
+      <view class='text'></view>
+    </view>
+    
   </view>
 
   <!-- transform: scale({{1-(newPos-initialLeft-index*midWindowWidth)/midWindowWidth}}) -->
   <!-- (1-((newScalePos*absIndex-index*midWindowWidth)/375)) -->
 </block>
+
+<view class='shopping-cart'>
+  <image src='../images/cart.png'></image>
+</view>

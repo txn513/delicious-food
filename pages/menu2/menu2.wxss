@@ -17,11 +17,33 @@ page{
 .touchItemImage {
   vertical-align: bottom;
 }
-
+.text-area {
+  margin-top: 120rpx;
+}
 .text {
-  border-radius: 8rpx;
-  background: #ccc;
-  height: 40rpx;
-  width: 200rpx;
-  margin: 0 auto;
+  border-radius: 30rpx;
+  background: #9c7789;
+  height: 60rpx;
+  width: 300rpx;
+  margin: 0 auto 30rpx;
+}
+
+.shopping-cart {
+  position: fixed;
+  margin:0 auto;  
+  left:0;  
+  right:0; 
+  bottom: 80rpx;
+  width: 450rpx;
+  height: 120rpx;
+  background: #ff2d78;
+  border-radius: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.shopping-cart image {
+  width: 50rpx;
+  height: 44rpx;
+
 }
