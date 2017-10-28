@@ -8,3 +8,15 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+
+.text-area {
+  margin-top: 120rpx;
+}
+.text {
+  border-radius: 30rpx;
+  background: #9c7789;
+  height: 60rpx;
+  width: 300rpx;
+  margin: 0 auto 30rpx;
+}

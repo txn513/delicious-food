@@ -29,8 +29,9 @@ Page({
 
     scaleStartPos: 0,
     newScalePos: 0,  //子集view位置
+    calculatedNewScalePos: 0,
     lastScalePos: 0,
-    absIndex: 1,
+    // absIndex: 1,
 
     animationData: {},
     animationDuration: 1000,
@@ -39,7 +40,7 @@ Page({
 
     showIndex: 0, // 图片中间显示索引，第一张图0，第二张图1...
 
-    canMove: true,  //是否可移动
+    // canMove: true,  //是否可移动
 
   },
   onLoad: function () {
@@ -86,8 +87,9 @@ Page({
     this.setData({
       animationData: {},
       moveStartPos: e.touches[0].pageX,
-      scaleStartPos: e.touches[0].pageX
+      scaleStartPos: e.touches[0].pageX,
       // lastPos: this.data.initialLeft
+      moveDis: 0
     });
 
     // console.log(this.data.lastScalePos);
@@ -95,32 +97,44 @@ Page({
   },
   itemTouchMove: function (e) {
     let _newPos = e.touches[0].pageX - this.data.moveStartPos + this.data.lastPos;
+    let _newScalePos = e.touches[0].pageX - this.data.scaleStartPos + this.data.lastScalePos;
 
     if (_newPos >= this.data.rightMaxPos && _newPos <= this.data.leftMaxPos){
-      this.animation.translate(e.touches[0].pageX - this.data.moveStartPos + this.data.lastPos).step({
+      this.animation.translate(_newPos).step({
         duration: 0
       });
-      this.setData({
-        // canMove: true,
-        animationData: this.animation.export(),
-        newPos: e.touches[0].pageX - this.data.moveStartPos + this.data.lastPos,
-        newScalePos: e.touches[0].pageX - this.data.scaleStartPos + this.data.lastScalePos,
-        // absNewPos: Math.abs(e.touches[0].pageX - this.data.moveStartPos + this.data.lastPos),
 
+
+      this.setData({
+        animationData: this.animation.export(),
+        newPos: _newPos,
+        newScalePos: _newScalePos,
         moveDis: e.touches[0].pageX - this.data.moveStartPos
       });
 
-      //绝对值指数
-      if (e.touches[0].pageX - this.data.scaleStartPos + this.data.lastScalePos < 0) {
+      if (_newScalePos > 0){  //特殊情况
         this.setData({
-          absIndex: -1,
+          calculatedNewScalePos: Math.abs(_newScalePos) * (-1),
         })
       }
       else {
         this.setData({
-          absIndex: 1,
+          calculatedNewScalePos: Math.abs(_newScalePos),
         })
       }
+
+
+      //绝对值指数
+      // if (e.touches[0].pageX - this.data.scaleStartPos + this.data.lastScalePos < 0) {
+      //   this.setData({
+      //     absIndex: -1,
+      //   })
+      // }
+      // else {
+      //   this.setData({
+      //     absIndex: 1,
+      //   })
+      // }
     }
     
 
@@ -134,6 +148,9 @@ Page({
     let _newPos = 0;
     let _divideScale = 0;
 
+
+    //公共函数
+    //@param type  --  1
     let c = type => {
 
       if (type == 2) {
@@ -158,18 +175,34 @@ Page({
 
       _divideScale = (_self.data.newScalePos - _endStopScalePos) / 60;
 
+
       this.setData({
         animationData: this.animation.export(),
         newPos: _newPos,
         // newScalePos: 0
         scaleInterval: setInterval(function () {
 
-          if (_self.data.newScalePos < _endStopScalePos) {
+          _self.setData({
+            newScalePos: _self.data.newScalePos - _divideScale,
+            lastScalePos: _self.data.newScalePos,
+          });
+
+          if (_self.data.newScalePos > 0) {  //特殊情况
             _self.setData({
-              newScalePos: _self.data.newScalePos - _divideScale,
-              lastScalePos: _self.data.newScalePos,
-            });
+              calculatedNewScalePos: Math.abs(_self.data.newScalePos - _divideScale) * (-1),
+            })
+          }
+          else {
+            _self.setData({
+              calculatedNewScalePos: Math.abs(_self.data.newScalePos - _divideScale),
+            })
+          }
+
+
+          //清除定时器
+          if (_divideScale < 0) {           
             if (_self.data.newScalePos >= _endStopScalePos) {
+              console.log('<0');
               clearInterval(_self.data.scaleInterval);
               _self.setData({
                 lastScalePos: _endStopScalePos,
@@ -177,11 +210,8 @@ Page({
             }
           }
           else {
-            _self.setData({
-              newScalePos: _self.data.newScalePos - _divideScale,
-              lastScalePos: _self.data.newScalePos,
-            });
             if (_self.data.newScalePos <= _endStopScalePos) {
+              console.log(">=0");
               clearInterval(_self.data.scaleInterval);
               _self.setData({
                 lastScalePos: _endStopScalePos,
@@ -192,9 +222,18 @@ Page({
       });
     }
 
-    
+    //判断点击滑动
     if (Math.abs(this.data.moveDis) < this.data.midWindowWidth / 2) {
-      c(1);
+      // console.log(Math.abs(this.data.moveDis));
+      if (Math.abs(this.data.moveDis) < 10){   //点击
+        wx.navigateTo({
+          url: '../detail/detail'
+        })
+      }
+      else {
+        c(1);
+      }
+      
     }
     else {
       if (this.data.moveDis < 0) { 
@@ -210,9 +249,5 @@ Page({
       lastPos: this.data.newPos,
       // lastScalePos: this.data.newScalePos,
     });
-
-    // console.log(this.data.showIndex);
-    // console.log(this.data.touchItemArr.length);
-
   },
 })

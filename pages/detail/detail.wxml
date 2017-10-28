@@ -1,0 +1,11 @@
+<view class="food-info">
+  <view class='text-area'>
+      <view class='text'></view>
+      <view class='text'></view>
+    </view>
+</view>
+
+
+<view class='shopping-cart'>
+  <image src='../images/cart.png'></image>
+</view>

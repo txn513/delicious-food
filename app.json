@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/test/test",
     "pages/menu/menu",
-    "pages/menu2/menu2"
+    "pages/menu2/menu2",
+    "pages/detail/detail"
   ],
   "window":{
     "backgroundTextStyle":"light",

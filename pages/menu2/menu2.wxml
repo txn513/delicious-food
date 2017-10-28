@@ -15,7 +15,7 @@
       <view 
       wx:for="{{touchItemArr}}" 
       class='touchItem' 
-      style='top: 0; left:{{index*midWindowWidth+"px"}}; transform: scale({{  (newScalePos*absIndex-index*midWindowWidth) > 0 ? (1-((newScalePos*absIndex-index*midWindowWidth)/240)):(1-((index*midWindowWidth-newScalePos*absIndex)/240)) }})'>
+      style='top: 0; left:{{index*midWindowWidth+"px"}}; transform: scale({{  (calculatedNewScalePos-index*midWindowWidth) > 0 ? (1-((calculatedNewScalePos-index*midWindowWidth)/240)):(1-((index*midWindowWidth-calculatedNewScalePos)/240)) }}) translate(0,{{  (calculatedNewScalePos-index*midWindowWidth) > 0 ? (1/(calculatedNewScalePos-index*midWindowWidth)*10+"px"):(1/(index*midWindowWidth-calculatedNewScalePos)*10+"px") }})'>
         <image 
         style="width: {{touchItemRadius*2+'rpx'}};height: {{touchItemRadius*2+'rpx'}}" 
         class='touchItemImage' 
