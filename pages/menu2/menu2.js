@@ -89,7 +89,8 @@ Page({
       moveStartPos: e.touches[0].pageX,
       scaleStartPos: e.touches[0].pageX,
       // lastPos: this.data.initialLeft
-      moveDis: 0
+      moveDis: 0,
+      newScalePos: 0,
     });
 
     // console.log(this.data.lastScalePos);
@@ -205,6 +206,7 @@ Page({
               console.log('<0');
               clearInterval(_self.data.scaleInterval);
               _self.setData({
+                calculatedNewScalePos: Math.abs(_endStopScalePos),
                 lastScalePos: _endStopScalePos,
               });
             }
@@ -214,6 +216,7 @@ Page({
               console.log(">=0");
               clearInterval(_self.data.scaleInterval);
               _self.setData({
+                calculatedNewScalePos: Math.abs(_endStopScalePos),
                 lastScalePos: _endStopScalePos,
               });
             }
@@ -221,6 +224,8 @@ Page({
         }, 16),
       });
     }
+
+    
 
     //判断点击滑动
     if (Math.abs(this.data.moveDis) < this.data.midWindowWidth / 2) {
