@@ -14,7 +14,7 @@ page{
 }
 .touchItem {
   position: absolute;
-  transform-origin:50% 90%;
+  transform-origin:50% 50%;
 }
 .touchItemImage {
   vertical-align: bottom;
